@@ -33,6 +33,8 @@ def main():
         with open("./tests/" + name, mode="r") as fails:
             n = fails.readline()
             data = fails.readline()
+            data = list(map(int, input().split()))
+
 
     elif "I" in mode:
         n = int(input())
