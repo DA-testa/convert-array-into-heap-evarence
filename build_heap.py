@@ -1,32 +1,31 @@
 # python3
 
 
-def build_heap(data):
-    swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
-    
-    #for i in range(0, len(data)):
-    if data[4]<data[1]:
-        (data[4],data[1]) = (data[4],data[1])
-        swaps.append([data[4],data[1]])
-    if data[1]<data[0]:
-        (data[1],data[0]) = (data[1],data[0])
-        swaps.append([0,1])
-    if data[4]<data[2]:
-        (data[4],data[2]) = (data[4],data[2])
-        swaps.append([1,3])
-    
-   
-    return swaps
+def mins(a, i, res):
+    n = len(a)
+    left_child = 2 * i + 1
+    right_child = 2 * i + 2
+    if left_child >= n:
+        return
+    child = left_child
+    if right_child < n and a[right_child] < a[left_child]:
+        child = right_child
+    if a[child] < a[i]:  
+        res.append([i, child])
+        a[i], a[child] = a[child], a[i]
+        mins(a, child, res)
+
+def build_heap(a):
+    res = []
+    n = len(a)
+    for i in range((n - 2)//2, -1, -1):
+        mins(a, i, res)
+    return res
+
 
 
 def main():
     
-    # TODO : add input and corresponding checks
-    # add another input for I or F 
-    # first two tests are from keyboard, third test is from a file
-
     mode = input()
 
     if "F" in mode:
@@ -35,31 +34,22 @@ def main():
             n = fails.readline()
             data = fails.readline()
 
-    if "I" in mode:
-    # input from keyboard
+    elif "I" in mode:
         n = int(input())
         data = list(map(int, input().split()))
 
-    # checks if lenght of data is the same as the said lenght
-    #assert len(data) == n
-   
+    else:
+        return
 
-    # calls function to assess the data 
-    # and give back all swaps
     swaps = build_heap(data)
+    assert len(data) == n
+    assert len(swaps) < 4*len(data)
 
-    # TODO: output how many swaps were made, 
-    # this number should be less than 4n (less than 4*len(data))
-   # assert len(swaps) < 4*len(data)
-   
-    
-
-    # output all swaps
     print(len(swaps))
     for i, j in swaps:
         print(i, j)
-
+    
 
 if __name__ == "__main__":
     main()
-
+ 
