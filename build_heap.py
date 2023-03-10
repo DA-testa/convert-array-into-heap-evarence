@@ -29,13 +29,13 @@ def main():
 
     mode = input()
 
-    if mode == "F":
+    if "F" in mode:
         name = input()
         with open("./tests/" + name, mode="r") as fails:
             n = fails.readline()
             data = fails.readline()
 
-    if mode == "I":
+    if "I" in mode:
     # input from keyboard
         n = int(input())
         data = list(map(int, input().split()))
