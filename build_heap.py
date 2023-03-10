@@ -30,10 +30,12 @@ def main():
 
     if "F" in mode:
         name = input()
-        with open("./tests/" + name, mode="r") as fails:
-            n = fails.readline()
-            data = fails.readline()
-            data = list(map(int, input().split()))
+        if name != "a":
+            with open("./tests/" + name, mode="r") as fails:
+                n = fails.readline()
+                data = fails.readline()
+                data = list(map(int, input().split()))
+                
 
 
     elif "I" in mode:
