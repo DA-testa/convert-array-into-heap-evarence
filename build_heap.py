@@ -32,8 +32,10 @@ def main():
         name = input()
         if name != "a":
             with open("./tests/" + name, mode="r") as fails:
-                n = fails.readline()
-                data = fails.readline()
+                file = fails.read()
+                text = file.splitlines()
+                n = int(text[0])
+                data = text[1]
                 data = list(map(int, input().split()))
                 
 
