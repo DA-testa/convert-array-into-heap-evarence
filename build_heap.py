@@ -36,7 +36,7 @@ def main():
                 text = file.splitlines()
                 n = int(text[0])
                 data = text[1]
-                data = list(map(int, input().split()))
+                data = list(map(int, data.split()))
                 
 
 
