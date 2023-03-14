@@ -1,26 +1,34 @@
 # python3
 
 
-def mins(a, i, res):
-    n = len(a)
-    left_child = 2 * i + 1
-    right_child = 2 * i + 2
+def mins(data, i, res):
+    n = len(data)
+
+    left_child = 2*i + 1
+    right_child = 2*i + 2
+
     if left_child >= n:
         return
-    child = left_child
-    if right_child < n and a[right_child] < a[left_child]:
-        child = right_child
-    if a[child] < a[i]:  
-        res.append([i, child])
-        a[i], a[child] = a[child], a[i]
-        mins(a, child, res)
+    
+    x = left_child 
+    if right_child < n and data[right_child] < data[left_child]:
+        x = right_child
+    #print(x)
+    if data[x] < data[i]:  
+        res.append([i, x]) 
+        data[i], data[x] = data[x], data[i]
+        mins(data, x, res) 
 
-def build_heap(a):
-    res = []
-    n = len(a)
-    for i in range((n - 2)//2, -1, -1):
-        mins(a, i, res)
-    return res
+def build_heap(data):
+    swaps = []
+    n = len(data)
+
+    for i in range(int((n - 2)/2), -1, -1):
+        #print(i)
+        mins(data,i, swaps)
+
+
+    return swaps
 
 
 
@@ -39,20 +47,21 @@ def main():
                 data = list(map(int, data.split()))
                 
 
-
     elif "I" in mode:
-        n = int(input())
+        n = int(input()) 
         data = list(map(int, input().split()))
 
     else:
         return
-
-    swaps = build_heap(data)
+    
     assert len(data) == n
+
+    swaps = build_heap(data) 
+    
     assert len(swaps) < 4*len(data)
 
     print(len(swaps))
-    for i, j in swaps:
+    for i, j in swaps: 
         print(i, j)
     
 
