@@ -1,23 +1,23 @@
 # python3
 
 
-def mins(data, i, res):
-    n = len(data)
-
+def swaping(data, i, res):
     left_child = 2*i + 1
     right_child = 2*i + 2
-
+    n = len(data) 
+    
     if left_child >= n:
         return
     
     x = left_child 
-    if right_child < n and data[right_child] < data[left_child]:
+    if data[left_child] > data[right_child] and right_child < n:
         x = right_child
     #print(x)
-    if data[x] < data[i]:  
+    if data[i] > data[x]:  
         res.append([i, x]) 
+         
         data[i], data[x] = data[x], data[i]
-        mins(data, x, res) 
+        swaping(data, x, res) 
 
 def build_heap(data):
     swaps = []
@@ -25,7 +25,7 @@ def build_heap(data):
 
     for i in range(int((n - 2)/2), -1, -1):
         #print(i)
-        mins(data,i, swaps)
+        swaping(data,i, swaps)
 
 
     return swaps
