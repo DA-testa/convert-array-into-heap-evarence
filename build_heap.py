@@ -10,7 +10,7 @@ def swaping(data, i, res):
         return
     
     x = left_child 
-    if data[left_child] > data[right_child] and right_child < n:
+    if right_child < n and data[left_child] > data[right_child]:
         x = right_child
     #print(x)
     if data[i] > data[x]:  
